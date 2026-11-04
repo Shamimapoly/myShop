@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
+import Dashboard from "./pages/Dashboard";
 
 // Protected Route
 function Protected({ children }) {
@@ -58,9 +59,9 @@ const router = createBrowserRouter([
         path: "products",
 
         element: (
-          <Protected>
+          
             <Products />
-          </Protected>
+          
         ),
       },
 
@@ -70,6 +71,15 @@ const router = createBrowserRouter([
         element: (
           <Protected>
             <Cart />
+          </Protected>
+        ),
+      },
+      {
+        path: "dashboard",
+
+        element: (
+          <Protected>
+            <Dashboard />
           </Protected>
         ),
       },
