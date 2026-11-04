@@ -14,6 +14,7 @@ import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard";
 import DashboardProduct from "./pages/DashboardProduct";
+import DashboardProductCreate from "./pages/DashboardProductCreate";
 
 // Protected Route
 function Protected({ children }) {
@@ -91,6 +92,16 @@ const router = createBrowserRouter([
         element: (
           <Protected>
             <DashboardProduct />
+          </Protected>
+        ),
+      },
+
+      {
+        path: "dashboard/product/create",
+
+        element: (
+          <Protected>
+            <DashboardProductCreate />
           </Protected>
         ),
       },

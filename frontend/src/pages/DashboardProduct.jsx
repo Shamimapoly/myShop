@@ -68,10 +68,6 @@ const DashboardProduct = () => {
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paginated = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const openAdd = () => {
-    setForm(emptyForm);
-    setModal("add");
-  };
 
   const openEdit = (product) => {
     setForm({ title: product.title, price: product.price, category: product.category, stock: product.stock, status: product.status, image: product.image });
@@ -216,7 +212,7 @@ const DashboardProduct = () => {
             </div>
 
             <button
-              onClick={openAdd}
+              onClick={() => navigate("/dashboard/product/create")}
               className="flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
             >
               <Plus size={17} />
