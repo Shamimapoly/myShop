@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   ShoppingBag,
@@ -21,16 +22,22 @@ import {
 } from "lucide-react";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const menuItems = [
-    { name: "Dashboard", icon: LayoutDashboard },
-    { name: "Products", icon: Package },
-    { name: "Orders", icon: ShoppingBag },
-    { name: "Customers", icon: Users },
-    { name: "Analytics", icon: ChartNoAxesCombined },
-    { name: "Settings", icon: Settings },
+    { name: "Dashboard", icon: LayoutDashboard, to: "/dashboard" },
+    { name: "Products", icon: Package, to: "/dashboard/product" },
+    { name: "Orders", icon: ShoppingBag, to: "/dashboard" },
+    { name: "Customers", icon: Users, to: "/dashboard" },
+    { name: "Analytics", icon: ChartNoAxesCombined, to: "/dashboard" },
+    { name: "Settings", icon: Settings, to: "/dashboard" },
   ];
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   const stats = [
     {
@@ -147,8 +154,10 @@ const Dashboard = () => {
             const Icon = item.icon;
 
             return (
-              <button
+              <Link
                 key={item.name}
+                to={item.to}
+                onClick={() => setSidebarOpen(false)}
                 className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition
                 ${
                   index === 0
@@ -158,13 +167,13 @@ const Dashboard = () => {
               >
                 <Icon size={19} />
                 {item.name}
-              </button>
+              </Link>
             );
           })}
         </nav>
 
         <div className="border-t pt-5">
-          <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm text-gray-500 hover:bg-gray-100">
+          <button onClick={handleLogout} className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm text-gray-500 hover:bg-gray-100">
             <LogOut size={19} />
             Logout
           </button>

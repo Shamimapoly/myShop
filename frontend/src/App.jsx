@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard";
+import DashboardProduct from "./pages/DashboardProduct";
 
 // Protected Route
 function Protected({ children }) {
@@ -80,6 +81,16 @@ const router = createBrowserRouter([
         element: (
           <Protected>
             <Dashboard />
+          </Protected>
+        ),
+      },
+
+      {
+        path: "dashboard/product",
+
+        element: (
+          <Protected>
+            <DashboardProduct />
           </Protected>
         ),
       },
