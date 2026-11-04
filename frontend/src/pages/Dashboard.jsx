@@ -154,10 +154,9 @@ const Dashboard = () => {
             const Icon = item.icon;
 
             return (
-              <Link
+              <button
                 key={item.name}
-                to={item.to}
-                onClick={() => setSidebarOpen(false)}
+                onClick={() => { setSidebarOpen(false); navigate(item.to); }}
                 className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition
                 ${
                   index === 0
@@ -167,7 +166,7 @@ const Dashboard = () => {
               >
                 <Icon size={19} />
                 {item.name}
-              </Link>
+              </button>
             );
           })}
         </nav>

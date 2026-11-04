@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   ShoppingBag,
@@ -145,16 +145,15 @@ const DashboardProduct = () => {
             const Icon = item.icon;
             const isActive = item.name === "Products";
             return (
-              <Link
+              <button
                 key={item.name}
-                to={item.to}
-                onClick={() => setSidebarOpen(false)}
+                onClick={() => { setSidebarOpen(false); navigate(item.to); }}
                 className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition
                 ${isActive ? "bg-black text-white" : "text-gray-500 hover:bg-gray-100 hover:text-black"}`}
               >
                 <Icon size={19} />
                 {item.name}
-              </Link>
+              </button>
             );
           })}
         </nav>
