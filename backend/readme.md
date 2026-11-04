@@ -10,3 +10,4 @@ title (string)
 description (string)
 image link (string)
 price (string)
+dashboard
