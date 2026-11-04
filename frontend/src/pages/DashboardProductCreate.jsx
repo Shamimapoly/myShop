@@ -13,10 +13,7 @@ import {
   Search,
   Bell,
   ArrowLeft,
-  ImagePlus,
 } from "lucide-react";
-
-const CATEGORIES = ["Electronics", "Fashion", "Beauty", "Sports", "Books", "Toys", "Home & Living"];
 
 const DashboardProductCreate = () => {
   const navigate = useNavigate();
@@ -208,38 +205,24 @@ const DashboardProductCreate = () => {
                   </div>
                 </div>
 
-                {/* Pricing & Stock */}
+                {/* Pricing */}
                 <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-                  <h3 className="mb-5 text-base font-bold">Pricing & Stock</h3>
+                  <h3 className="mb-5 text-base font-bold">Pricing</h3>
 
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div>
-                      <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                        Price ($) <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={form.price}
-                        onChange={(e) => field("price", e.target.value)}
-                        placeholder="0.00"
-                        className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-black ${errors.price ? "border-red-400 bg-red-50" : "border-gray-200"}`}
-                      />
-                      {errors.price && <p className="mt-1 text-xs text-red-500">{errors.price}</p>}
-                    </div>
-
-                    <div>
-                      <label className="mb-1.5 block text-sm font-medium text-gray-700">Stock Quantity</label>
-                      <input
-                        type="number"
-                        min="0"
-                        value={form.stock}
-                        onChange={(e) => field("stock", e.target.value)}
-                        placeholder="0"
-                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-black"
-                      />
-                    </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                      Price ($) <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={form.price}
+                      onChange={(e) => field("price", e.target.value)}
+                      placeholder="0.00"
+                      className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-black ${errors.price ? "border-red-400 bg-red-50" : "border-gray-200"}`}
+                    />
+                    {errors.price && <p className="mt-1 text-xs text-red-500">{errors.price}</p>}
                   </div>
                 </div>
 
@@ -252,67 +235,17 @@ const DashboardProductCreate = () => {
                 <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
                   <h3 className="mb-5 text-base font-bold">Product Image</h3>
 
-                  {form.image ? (
-                    <div className="relative mb-4 overflow-hidden rounded-xl">
-                      <img
-                        src={form.image}
-                        alt="Preview"
-                        className="h-48 w-full object-cover"
-                        onError={(e) => { e.target.style.display = "none"; }}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => field("image", "")}
-                        className="absolute right-2 top-2 rounded-full bg-black/60 p-1 text-white"
-                      >
-                        <X size={14} />
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="mb-4 flex h-48 flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 bg-gray-50">
-                      <ImagePlus size={32} className="text-gray-300" />
-                      <p className="mt-2 text-xs text-gray-400">Paste an image URL below</p>
-                    </div>
-                  )}
-
-                  <input
-                    value={form.image}
-                    onChange={(e) => field("image", e.target.value)}
-                    placeholder="https://images.unsplash.com/..."
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-black"
-                  />
-                </div>
-
-                {/* Category & Status */}
-                <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-                  <h3 className="mb-5 text-base font-bold">Organisation</h3>
-
-                  <div className="space-y-4">
-                    <div>
-                      <label className="mb-1.5 block text-sm font-medium text-gray-700">Category</label>
-                      <select
-                        value={form.category}
-                        onChange={(e) => field("category", e.target.value)}
-                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-black"
-                      >
-                        {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="mb-1.5 block text-sm font-medium text-gray-700">Status</label>
-                      <select
-                        value={form.status}
-                        onChange={(e) => field("status", e.target.value)}
-                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-black"
-                      >
-                        <option>Active</option>
-                        <option>Low Stock</option>
-                        <option>Out of Stock</option>
-                      </select>
-                    </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-medium text-gray-700">Image URL</label>
+                    <input
+                      value={form.image}
+                      onChange={(e) => field("image", e.target.value)}
+                      placeholder="https://images.unsplash.com/..."
+                      className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-black"
+                    />
                   </div>
                 </div>
+
 
                 {/* Actions */}
                 <div className="flex gap-3">
