@@ -14,6 +14,9 @@ import {
   Bell,
   ArrowLeft,
 } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import api from "../api";
+
 
 const DashboardProductCreate = () => {
   const navigate = useNavigate();
@@ -28,6 +31,44 @@ const DashboardProductCreate = () => {
     stock: "",
     status: "Active",
   });
+
+
+
+
+    const tanaddproduct = useMutation({
+      mutationFn: async ({ title, description, price, image }) => {
+        const { data } = await api.post("/product/createProduct", {
+          name : title,
+          description: description,
+          price: price,
+          image: image,
+       
+        });
+        return data;
+        
+      },
+      
+      onSuccess: (data) => {
+    
+        console.log("product created",data);
+     
+      },
+      onError: (error) => {
+        console.log(error);
+        console.log(error.message);
+      },
+       onSettled: () => {
+  
+    },
+     
+    });
+
+
+
+  let addProduct =() => {
+    console.log("Add Product button clicked");
+     tanaddproduct.mutate(form);
+  }
 
   const [errors, setErrors] = useState({});
 
@@ -54,7 +95,7 @@ const DashboardProductCreate = () => {
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     // TODO: send to API
     console.log("New product:", form);
-    navigate("/dashboard/product");
+    // navigate("/dashboard/product");
   };
 
   const handleLogout = () => {
@@ -123,7 +164,7 @@ const DashboardProductCreate = () => {
               <Menu size={24} />
             </button>
             <div>
-              <h2 className="text-lg font-bold">Add Product</h2>
+              <h2 onClick={addProduct} className="text-lg font-bold">Add Product</h2>
               <p className="hidden text-xs text-gray-400 sm:block">Fill in the details to add a new product</p>
             </div>
           </div>
@@ -257,10 +298,11 @@ const DashboardProductCreate = () => {
                     Cancel
                   </button>
                   <button
+                  onClick={addProduct}
                     type="submit"
                     className="flex-1 rounded-xl bg-black py-3 text-sm font-medium text-white hover:bg-gray-800"
                   >
-                    Add Product
+                    Add Product 22
                   </button>
                 </div>
 
